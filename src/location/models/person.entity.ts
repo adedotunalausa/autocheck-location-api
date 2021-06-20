@@ -15,7 +15,7 @@ export class PersonEntity {
 
   @Column({ name: 'email', unique: true })
   @IsEmail({}, { message: 'Incorrect email' })
-  @IsNotEmpty({ message: 'The email is required' })
+  @IsNotEmpty({ message: 'Email is required' })
   email: string;
 
   @Column()
@@ -30,4 +30,7 @@ export class PersonEntity {
 
   @Column()
   state: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 }

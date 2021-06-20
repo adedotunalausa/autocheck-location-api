@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import {
   Column,
   Entity,
@@ -12,7 +13,8 @@ export class LocationEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
+  @IsNotEmpty({ message: 'Location name is required' })
   name: string;
 
   @Column()
@@ -24,13 +26,20 @@ export class LocationEntity {
   @Column()
   phone: string;
 
-  @OneToOne((type) => PersonEntity, { cascade: ['insert', 'update'] })
+  @OneToOne(() => PersonEntity, {
+    cascade: ['insert'],
+  })
   @JoinColumn()
   contactPerson: PersonEntity;
 
   @Column()
+  @IsNotEmpty({ message: 'Longitude is required' })
   longitude: number;
 
   @Column()
+  @IsNotEmpty({ message: 'Latitude is required' })
   latitude: number;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
 }

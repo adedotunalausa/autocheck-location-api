@@ -16,6 +16,7 @@ import { LocationModule } from './location/location.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
+      synchronize: true,
     }),
     LocationModule,
   ],

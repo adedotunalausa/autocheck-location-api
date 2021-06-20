@@ -54,6 +54,12 @@ export class LocationService {
     this.personRepository.delete(person.id);
   }
 
+  /**
+   *
+   * @param id this is the id of a location that is already saved in the database
+   * @param calculateRequest this contains the longitude and latitude of the base location where we're calculating from
+   * @returns this is the calculated distance in kilometers
+   */
   async calculateDistance(
     id: number,
     calculateRequest: CalculateRequest,
@@ -73,7 +79,7 @@ export class LocationService {
         Math.sin(longitudeInRadians / 2) *
         Math.sin(longitudeInRadians / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = radiusOfEarth * c; // distance in km
+    const distance = radiusOfEarth * c;
 
     return distance;
   }

@@ -40,6 +40,12 @@ export class LocationController {
     return this.locationService.getOneLocation(+id);
   }
 
+  /**
+   *
+   * @param id this is the id of a location that has been saved. It is passed as a path parameter
+   * @param calculateRequest this contains the longitude and latitude of the base location where we're calculating from
+   * @returns this is the calculated distance in kilometers
+   */
   @Get('/calculate/:id')
   calculate(
     @Param('id') id: string,

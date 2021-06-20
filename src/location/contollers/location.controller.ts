@@ -25,7 +25,7 @@ export class LocationController {
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() location: Location,
+    @Body() location: any,
   ): Observable<UpdateResult> {
     return this.locationService.editLocation(+id, location);
   }

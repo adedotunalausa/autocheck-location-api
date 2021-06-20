@@ -21,11 +21,13 @@ export class LocationService {
     return from(this.locationRepository.save(location));
   }
 
-  editLocation(id: number, location: Location): Observable<UpdateResult> {
-    this.personRepository.update(
-      location.contactPerson.id,
-      location.contactPerson,
-    );
+  editLocation(id: number, location: any): Observable<UpdateResult> {
+    if (location.contactPerson !== null) {
+      this.personRepository.update(
+        location.contactPerson.id,
+        location.contactPerson,
+      );
+    }
     return from(this.locationRepository.update(id, location));
   }
 

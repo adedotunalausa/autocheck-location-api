@@ -40,7 +40,16 @@ export class LocationService {
   }
 
   deleteLocation(id: number): Observable<DeleteResult> {
+    this.deleteContactPerson(id);
     return from(this.locationRepository.delete(id));
+  }
+
+  async deleteContactPerson(id: number) {
+    const location = await this.locationRepository.findOne(id);
+    const person = await this.personRepository.findOne({
+      where: { email: location.contactPerson.email },
+    });
+    this.personRepository.delete(person.id);
   }
 
   async calculateDistance(

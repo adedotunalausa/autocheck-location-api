@@ -23,7 +23,7 @@ export class LocationController {
   }
 
   @Put(':id')
-  edit(
+  update(
     @Param('id') id: string,
     @Body() location: Location,
   ): Observable<UpdateResult> {

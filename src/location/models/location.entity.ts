@@ -32,11 +32,11 @@ export class LocationEntity {
   @JoinColumn()
   contactPerson: PersonEntity;
 
-  @Column()
+  @Column('decimal')
   @IsNotEmpty({ message: 'Longitude is required' })
   longitude: number;
 
-  @Column()
+  @Column('decimal')
   @IsNotEmpty({ message: 'Latitude is required' })
   latitude: number;
 

@@ -11,6 +11,9 @@ $ npm install
 ## Running the app
 
 ```bash
+# database setup
+$ create a .env file and declare all the environment variables used in app.module.ts file
+
 # development
 $ npm run start
 

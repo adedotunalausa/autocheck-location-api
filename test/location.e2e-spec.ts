@@ -9,7 +9,9 @@ import { PersonEntity } from '../src/location/models/person.entity';
 describe('LocationController (e2e)', () => {
   let app: INestApplication;
 
-  const mockLocationRepository = {};
+  const mockLocationRepository = {
+    find: jest.fn(),
+  };
   const mockPersonRepository = {};
 
   beforeEach(async () => {

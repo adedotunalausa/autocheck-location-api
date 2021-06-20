@@ -5,6 +5,13 @@ import { LocationController } from './location.controller';
 describe('LocationController', () => {
   let controller: LocationController;
 
+  const calculateRequest = {
+    longitude: 4824782,
+    latitude: 246718,
+  };
+
+  const calculatedDistance = 462762;
+
   const location = {
     name: 'Test Location',
     description: 'A location for testing',
@@ -42,6 +49,7 @@ describe('LocationController', () => {
       id,
       location,
     })),
+    calculateDistance: jest.fn(() => calculatedDistance),
   };
 
   beforeEach(async () => {
@@ -113,5 +121,11 @@ describe('LocationController', () => {
     });
 
     expect(mockLocationService.deleteLocation).toHaveBeenCalled();
+  });
+
+  it('should calculate a distance', () => {
+    expect(controller.calculate('1', calculateRequest)).toEqual(
+      calculatedDistance,
+    );
   });
 });
